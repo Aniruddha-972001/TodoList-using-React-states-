@@ -1,5 +1,6 @@
 import todoData from "../data/todos";
 import { useState } from "react";
+import "./TodoList.css";
 
 function TodoList() {
   const [todos, setTodos] = useState(todoData.todos);
@@ -8,7 +9,7 @@ function TodoList() {
   const [editValue, setEditValue] = useState("");
 
   const handleAddTodo = () => {
-    if(inputValue.trim() == "") return;
+    if (inputValue.trim() == "") return;
     const newTodo = {
       id: Date.now(),
       todo: inputValue,
@@ -52,10 +53,10 @@ function TodoList() {
   };
 
   return (
-    <div>
-      <h2>My Todos</h2>
+    <div className="todo-container">
+      <h2 className="todo-title">My Todos</h2>
 
-      <div>
+      <div className="todo-input-container">
         <input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
@@ -64,9 +65,9 @@ function TodoList() {
         <button onClick={handleAddTodo}>Add</button>
       </div>
 
-      <ul>
+      <ul className="todo-list">
         {todos.map((item) => (
-          <li key={item.id} style={{ marginBottom: "10px" }} >
+          <li key={item.id} className="todo-item">
             {editingId === item.id ? (
               <>
                 <input
@@ -74,25 +75,35 @@ function TodoList() {
                   onChange={(e) => setEditValue(e.target.value)}
                 />
                 <button onClick={() => handleSaveEdit(item.id)}>Save</button>
-                <button onClick={() => setEditingId(null)}>Cancel</button>
+                <button
+                  onClick={() => {
+                    setEditingId(null);
+                    setEditValue("");
+                  }}
+                >
+                  Cancel
+                </button>
               </>
             ) : (
               <>
                 <span
+                  className="todo-text"
                   onClick={() => handleToggleTodo(item.id)}
                   style={{
                     textDecoration: item.completed ? "line-through" : "none",
-                    cursor: "pointer",
                   }}
                 >
                   {item.todo} {item.completed ? "✅" : "❌"}
                 </span>
 
-                <button onClick={() => handleStartEdit(item)}>Edit</button>
+                <div className="todo-actions">
+                  <button onClick={() => handleStartEdit(item)}>Edit</button>
+                  <button onClick={() => handleDeleteTodo(item.id)}>
+                    Delete
+                  </button>
+                </div>
               </>
             )}
-
-            <button onClick={() => handleDeleteTodo(item.id)}>Delete</button>
           </li>
         ))}
       </ul>
