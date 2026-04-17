@@ -1,37 +1,55 @@
 import todoData from "../data/todos";
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import "./TodoList.css";
+import todoReducer from "../reducers/todoReducer";
 
 function TodoList() {
-  const [todos, setTodos] = useState(todoData.todos);
+  //const [todos, setTodos] = useState(todoData.todos);
+  const [todos, dispatch] = useReducer(todoReducer, todoData.todos);
   const [inputValue, setInputValue] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editValue, setEditValue] = useState("");
 
+  // const handleAddTodo = () => {
+  //   if (inputValue.trim() == "") return;
+  //   const newTodo = {
+  //     id: Date.now(),
+  //     todo: inputValue,
+  //     completed: false,
+  //     userId: 1,
+  //   };
+  //   //setTodos([...todos, newTodo]);     -----> to add the todo at the end
+  //   setTodos([newTodo, ...todos]); // -----> to add the todo at the start
+  //   // setTodos((prevTodos) => [newTodo, ...prevTodos]);    -----> always uses the latest state
+  //   setInputValue("");
+  // };
   const handleAddTodo = () => {
-    if (inputValue.trim() == "") return;
-    const newTodo = {
-      id: Date.now(),
-      todo: inputValue,
-      completed: false,
-      userId: 1,
-    };
-    //setTodos([...todos, newTodo]);     -----> to add the todo at the end
-    setTodos([newTodo, ...todos]); // -----> to add the todo at the start
-    // setTodos((prevTodos) => [newTodo, ...prevTodos]);    -----> always uses the latest state
+    const trimmedValue = inputValue.trim();
+    if (!trimmedValue) return;
+    dispatch({
+      type: "ADD_TODO",
+      payload: {
+        id: Date.now(),
+        todo: trimmedValue,
+        completed: false,
+        userId: 1,
+      },
+    });
     setInputValue("");
   };
 
   const handleDeleteTodo = (id) => {
-    setTodos((prevTodos) => prevTodos.filter((item) => item.id !== id));
+    dispatch({
+      type: "DELETE_TODO",
+      payload: id,
+    });
   };
 
   const handleToggleTodo = (id) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((item) =>
-        item.id === id ? { ...item, completed: !item.completed } : item
-      )
-    );
+    dispatch({
+      type: "TOGGLE_TODO",
+      payload: id,
+    });
   };
 
   const handleStartEdit = (item) => {
@@ -40,14 +58,16 @@ function TodoList() {
   };
 
   const handleSaveEdit = (id) => {
-    if (editValue.trim() === "") return;
-
-    setTodos((prevTodos) =>
-      prevTodos.map((item) =>
-        item.id === id ? { ...item, todo: editValue.trim() } : item
-      )
-    );
-
+    const trimmedValue = editValue.trim();
+    if (!trimmedValue) return;
+    dispatch({
+      type: "EDIT_TODO",
+      payload: {
+        id,
+        text: trimmedValue,
+      },
+    });
+  
     setEditingId(null);
     setEditValue("");
   };
