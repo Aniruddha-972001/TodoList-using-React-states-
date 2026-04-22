@@ -1,88 +1,277 @@
 /* Container */
 .todo-container {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f9fafb;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.todo-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input section */
+.todo-input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-input-container input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.todo-input-container button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.todo-input-container button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Wrapper for left + right sections */
+.todo-sections {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+/* Each column */
+.todo-section {
+  flex: 1;
+}
+
+/* Section titles */
+.todo-section h3 {
+  text-align: center;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+/* List */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each item */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Text */
+.todo-text {
+  cursor: pointer;
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Buttons */
+.todo-actions button {
+  margin-left: 5px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* First button = Edit / Save */
+.todo-actions button:first-child {
+  background-color: #f59e0b;
+  color: white;
+}
+
+/* Last button = Delete / Cancel */
+.todo-actions button:last-child {
+  background-color: #ef4444;
+  color: white;
+}
+
+.todo-actions button:hover {
+  opacity: 0.8;
+}
+
+/* Empty text */
+.todo-section p {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .todo-sections {
+    flex-direction: column;
   }
-  
-  /* Title */
-  .todo-title {
-    text-align: center;
-    margin-bottom: 20px;
+  .todo-stats {
+    flex-direction: column;
   }
-  
-  /* Input section */
-  .todo-input-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .todo-input-container input {
-    flex: 1;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .todo-input-container button {
-    padding: 8px 12px;
-    border: none;
-    background-color: #2563eb;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .todo-input-container button:hover {
-    background-color: #1d4ed8;
-  }
-  
-  /* List */
-  .todo-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  /* Each item */
-  .todo-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 8px;
-    background-color: white;
-    border-radius: 6px;
-    border: 1px solid #e5e7eb;
-  }
-  
-  /* Text */
-  .todo-text {
-    cursor: pointer;
-  }
-  
-  /* Buttons */
-  .todo-actions button {
-    margin-left: 5px;
-    padding: 5px 8px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .todo-actions button:first-child {
-    background-color: #f59e0b; /* edit */
-    color: white;
-  }
-  
-  .todo-actions button:last-child {
-    background-color: #ef4444; /* delete */
-    color: white;
-  }
-  
-  .todo-actions button:hover {
-    opacity: 0.8;
-  }
+}
+
+.todo-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  flex: 1;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.stat-card p {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #111827;
+}
+.todo-search-container {
+  margin-bottom: 15px;
+}
+
+.todo-search-container input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+/* Filter buttons container */
+.todo-filter-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+/* Buttons */
+.todo-filter-container button {
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #111827;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+/* Hover */
+.todo-filter-container button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Active button (we'll wire next) */
+.todo-filter-container button.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Header row */
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.theme-toggle-btn {
+  padding: 8px 12px;
+  border: none;
+  background-color: #111827;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.theme-toggle-btn:hover {
+  opacity: 0.9;
+}
+
+/* Dark mode container */
+.todo-container.dark {
+  background-color: #1f2937;
+  color: white;
+}
+
+/* Dark mode stat cards */
+.todo-container.dark .stat-card {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.todo-container.dark .stat-card h4,
+.todo-container.dark .stat-card p,
+.todo-container.dark .todo-section h3,
+.todo-container.dark .todo-title {
+  color: white;
+}
+
+/* Dark mode items */
+.todo-container.dark .todo-item {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.todo-container.dark .todo-text {
+  color: white;
+}
+
+/* Dark mode input fields */
+.todo-container.dark .todo-input-container input,
+.todo-container.dark .todo-search-container input,
+.todo-container.dark .todo-item input {
+  background-color: #111827;
+  color: white;
+  border: 1px solid #6b7280;
+}
+
+/* Dark mode filter buttons */
+.todo-container.dark .todo-filter-container button {
+  background-color: #374151;
+  color: white;
+  border-color: #6b7280;
+}
+
+.todo-container.dark .todo-filter-container button.active {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Dark mode empty text */
+.todo-container.dark .todo-section p {
+  color: #d1d5db;
+}
